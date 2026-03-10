@@ -22,9 +22,11 @@ let config = {
     },
 
     autoCenter: Phaser.Scale.CENTER_BOTH,
-    zoom: 1,
+    zoom: 1.5,
 
     scene: [Menu, Play],
 }
 
 let game = new Phaser.Game(config)
+game.CENTER_X = (game.config.width / 2)
+game.CENTER_Y = (game.config.height / 2)
