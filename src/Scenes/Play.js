@@ -35,13 +35,17 @@ class Play extends Phaser.Scene {
         statsButton.scale = 1.2
     }
 
+    //defines and formats the date for the player to see.
     resetDate(timeText) {
         this.time = new Date()
 
         let militaryHours = this.time.getHours()
-        let hours = 0
+        let hours = militaryHours
         let ampm = 'PM'
-        if (militaryHours > 12) {
+        if (militaryHours == 12) {
+            ampm = 'PM'
+        }
+        else if (militaryHours > 12) {
             hours = militaryHours - 12
         }
         else if (militaryHours == 0) {
@@ -61,12 +65,14 @@ class Play extends Phaser.Scene {
         timeText.text = (hours + ':' + minutes + ' ' + ampm)
     }
 
+    //called by the menu button. Adds any particular amount to a set of stats for the creature
+    //acceptable values for stat include: 'hunger', 'sleep', and 'happiness'
+    //amnt should be a positive integer value.
     replenishStat(stat, amnt) {
-        console.log(stat)
         this.creature.addToStat(stat, amnt)
     }
 
     toggleDisplayStats(toggle) {
-
+        //when this button is pressed the stats screen will show up
     }
 }

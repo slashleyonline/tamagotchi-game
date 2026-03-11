@@ -5,11 +5,11 @@ class Menu extends Phaser.Scene {
 
     preload() {
         this.load.path = "./assets/"
-        this.load.spritesheet('playMenuButton', 'playMenuButton.png', {
+        this.load.spritesheet('playMenuButton', 'Buttons/playMenuButton.png', {
             frameWidth: 303,
             frameHeight: 175
         })
-        this.load.spritesheet('quitMenuButton', 'quitMenuButton.png', {
+        this.load.spritesheet('quitMenuButton', 'Buttons/quitMenuButton.png', {
             frameWidth: 303,
             frameHeight: 175
         })
@@ -17,19 +17,20 @@ class Menu extends Phaser.Scene {
             frameWidth: 640,
             frameHeight: 480
         })
-        this.load.spritesheet('playButton', 'playButton.png', {
+        this.load.spritesheet('playButton', 'Buttons/playButton.png', {
             frameWidth: 38
         })
-        this.load.spritesheet('eatButton', 'eatButton.png', {
+        this.load.spritesheet('eatButton', 'Buttons/eatButton.png', {
             frameWidth: 38
         })
-        this.load.spritesheet('sleepButton', 'sleepButton.png', {
+        this.load.spritesheet('sleepButton', 'Buttons/sleepButton.png', {
             frameWidth: 38
         })
-        this.load.spritesheet('statsButton', 'statsButton.png', {
+        this.load.spritesheet('statsButton', 'Buttons/statsButton.png', {
             frameWidth: 38
         })
         this.load.image('shell', 'consoleShellRender.png')
+        this.load.audio('press', 'Sounds/Press.wav')
     }
 
     create() {

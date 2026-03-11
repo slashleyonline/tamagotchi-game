@@ -18,6 +18,9 @@ class MenuButton extends Phaser.Physics.Arcade.Sprite {
         }
 
         this.scale= 0.25
+        this.on('pointerdown', () => { 
+            scene.sound.play('press')
+        })
 
     }
 
