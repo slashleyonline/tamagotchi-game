@@ -1,7 +1,7 @@
 // Name: Ashley Seward
 // Title: Ashagotchi
 
-//CITATIONS:
+// CITATIONS:
 // StateMachine.js from mkelly.me/blog/phaser-finite-state-machine, Thanks Nathan Altice
 
 let config = {

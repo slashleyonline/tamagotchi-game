@@ -13,19 +13,21 @@ class MenuButton extends Phaser.Physics.Arcade.Sprite {
 
         this.body.allowGravity = false
 
-        this.setEvent(key)
+        if (key != 'button') {
+            this.setEvent(key)
+        }
 
         this.scale= 0.25
 
     }
 
     setEvent(key) {
-        if (key == 'playButton') {
+        if (key == 'playMenuButton') {
             this.on('pointerdown', () => {
                 this.parentScene.scene.start('playScene')
             })
         }
-        else if (key == 'quitButton') {
+        else if (key == 'quitMenuButton') {
             this.on('pointerdown', () => {
                 this.parentScene.scene.start('menuScene')
             })

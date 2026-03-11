@@ -23,14 +23,34 @@ class Creature extends Phaser.Physics.Arcade.Sprite {
         //refilled by eating
 
     }
+
+    resetHealth() {
+        this.health = (this.happiness + this.sleep + this.hunger) / 3
+    }
+
     incrementTime() {
         this.happiness -= 0.1
         this.sleep -= 0.1
         this.hunger = 0.1
 
-        this.health = (happiness + sleep + hunger) / 3
+        this.resetHealth()
         if (this.health == 0) {
             console.log('game over!')
         }
     }
+
+    addToStat(stat, amnt) {
+        if (stat == 'hunger') {
+            this.hunger += amnt
+        }
+        else if (stat == 'sleep') {
+            this.sleep += amnt
+        }
+        else if (stat == 'happiness') {
+            this.happiness += amnt
+        }
+
+        this.resetHealth()
+    }
+    
 }

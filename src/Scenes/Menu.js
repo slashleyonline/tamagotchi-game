@@ -5,17 +5,29 @@ class Menu extends Phaser.Scene {
 
     preload() {
         this.load.path = "./assets/"
-        this.load.spritesheet('playButton', 'playButton.png', {
+        this.load.spritesheet('playMenuButton', 'playMenuButton.png', {
             frameWidth: 303,
             frameHeight: 175
         })
-        this.load.spritesheet('quitButton', 'quitButton.png', {
+        this.load.spritesheet('quitMenuButton', 'quitMenuButton.png', {
             frameWidth: 303,
             frameHeight: 175
         })
         this.load.spritesheet('ashSprite', 'Ash/AshSpritesheet.png', {
             frameWidth: 640,
             frameHeight: 480
+        })
+        this.load.spritesheet('playButton', 'playButton.png', {
+            frameWidth: 38
+        })
+        this.load.spritesheet('eatButton', 'eatButton.png', {
+            frameWidth: 38
+        })
+        this.load.spritesheet('sleepButton', 'sleepButton.png', {
+            frameWidth: 38
+        })
+        this.load.spritesheet('statsButton', 'statsButton.png', {
+            frameWidth: 38
         })
         this.load.image('shell', 'consoleShellRender.png')
     }
@@ -36,7 +48,7 @@ class Menu extends Phaser.Scene {
             align: "center"
         })
 
-        let playButton = new MenuButton(this, game.CENTER_X, 300, 'playButton')
+        let playButton = new MenuButton(this, game.CENTER_X, 300, 'playMenuButton')
 
     }
 }
