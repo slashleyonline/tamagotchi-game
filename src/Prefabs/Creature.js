@@ -51,7 +51,7 @@ class Creature extends Phaser.Physics.Arcade.Sprite {
     }
 
     addToStat(stat, amnt) {
-        console.log('adding ' + amnt + ' to ' + stat)
+        //console.log('adding ' + amnt + ' to ' + stat)
         if ((stat == 'hunger') && ( (this.hunger + amnt) < 100) && !(this.hunger <= 0)) {
             this.hunger += amnt
         }

@@ -52,7 +52,7 @@ class Play extends Phaser.Scene {
         this.statsLayer.setVisible(false)
         this.setStatText()
 
-        console.log(this.creature.getStats())
+        //nsole.log(this.creature.getStats())
 
         this.time = new Date()
         this.timeText = this.add.text(game.CENTER_X + 50, (game.config.height / 4), this.time.getHours(), {
@@ -62,13 +62,13 @@ class Play extends Phaser.Scene {
         this.resetDate(this.timeText)
         setInterval(this.resetDate, 1000, this.timeText)
 
-        setInterval( () => {
+        setInterval(() => {
             let stats = this.creature.getStats()
             this.healthText.text = stats.health
             this.hungerText.text = stats.hunger
             this.happyText.text = stats.happiness
             this.sleepText.text = stats.sleep
-        })
+        }, 1000)
 
     }
 
