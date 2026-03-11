@@ -10,6 +10,7 @@ class Play extends Phaser.Scene {
 
         let ash = new Creature(this,game.CENTER_X,game.CENTER_Y,'ashSprite')
         ash.play('idle', true)
+        ash.init()
 
         this.creature = ash
 
@@ -22,7 +23,7 @@ class Play extends Phaser.Scene {
         })
         this.resetDate(this.timeText)
         setInterval(this.resetDate, 1000, this.timeText)
-        setInterval(ash.incrementTime, 1000)
+
 
         let foodButton = new MenuButton(this, game.CENTER_X -135, 415, 'eatButton')
         foodButton.scale = 1.2
@@ -60,8 +61,12 @@ class Play extends Phaser.Scene {
         timeText.text = (hours + ':' + minutes + ' ' + ampm)
     }
 
-    ReplenishStat(stat, amnt) {
+    replenishStat(stat, amnt) {
         console.log(stat)
         this.creature.addToStat(stat, amnt)
+    }
+
+    toggleDisplayStats(toggle) {
+
     }
 }

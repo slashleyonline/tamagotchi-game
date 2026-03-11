@@ -7,7 +7,6 @@ class Creature extends Phaser.Physics.Arcade.Sprite {
         this.parentScene.add.existing(this)
         this.scale = 0.4
 
-
         this.health = 100
         //overall health of the creature
         //the average of all stats
@@ -21,32 +20,44 @@ class Creature extends Phaser.Physics.Arcade.Sprite {
         
         this.hunger = 20
         //refilled by eating
+    }
+    init() {
+            setInterval(() => {
+            this.happiness -= 1
+            this.sleep -= 1
+            this.hunger -= 1
+
+            this.resetHealth()
+            if (this.health <= 0) {
+                console.log('game over!')
+            }
+        }, 1000)
 
     }
-
     resetHealth() {
         this.health = (this.happiness + this.sleep + this.hunger) / 3
     }
 
     incrementTime() {
-        this.happiness -= 0.1
-        this.sleep -= 0.1
-        this.hunger = 0.1
+        happiness -= 1
+        sleep -= 1
+        hunger -= 1
 
-        this.resetHealth()
-        if (this.health == 0) {
+        this.health = (this.happiness + this.sleep + this.hunger) / 3
+        if (this.health <= 0) {
             console.log('game over!')
         }
     }
 
     addToStat(stat, amnt) {
-        if (stat == 'hunger') {
+        console.log('adding ' + amnt + ' to ' + stat)
+        if ((stat == 'hunger') && ( (this.hunger + amnt) < 100)) {
             this.hunger += amnt
         }
-        else if (stat == 'sleep') {
+        else if ((stat == 'sleep') && ( (this.sleep + amnt) < 100)) {
             this.sleep += amnt
         }
-        else if (stat == 'happiness') {
+        else if ((stat == 'happiness') && ( (this.happiness + amnt) < 100)) {
             this.happiness += amnt
         }
 
