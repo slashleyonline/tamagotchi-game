@@ -5,11 +5,12 @@ class Play extends Phaser.Scene {
     }
 
     create() {
-        this.bgImg = this.add.image(game.CENTER_X, game.CENTER_Y, 'shell')
-        this.bgImg.scale = 1.5
+        this.add.image(game.CENTER_X, game.CENTER_Y, 'background')
+        this.console = this.add.image(game.CENTER_X, game.CENTER_Y, 'shell')
+        this.console.scale = 1.5
 
-        let ash = new Creature(this,game.CENTER_X,game.CENTER_Y,'ashSprite')
-        this.creature = ash
+        this.creature = new Creature(this,game.CENTER_X,game.CENTER_Y,'ashSprite')
+        let ash = this.creature
         ash.play('idle', true)
         ash.init()
 
@@ -38,7 +39,7 @@ class Play extends Phaser.Scene {
         this.sleepText = this.add.text(game.CENTER_X - 120, (game.config.height / 2) + 15, "Ashagotchi", textConfig)
         this.happyText = this.add.text(game.CENTER_X - 120, (game.config.height / 2) + 40, "Ashagotchi", textConfig)
 
-        let statsText = {
+        this.statsText = {
             health: this.healthText,
             hunger: this.hungerText,
             sleep: this.sleepText,
@@ -48,7 +49,7 @@ class Play extends Phaser.Scene {
         this.statsLayer.add([this.healthText, this.hungerText, this.sleepText, this.happyText])
         this.statsLayer.setVisible(false)
 
-        this.setStatText(ash, statsText)
+        this.setStatText(this.creature, this.statsText)
 
         this.time = new Date()
         let timeText = this.add.text(game.CENTER_X + 50, (game.config.height / 4), this.time.getHours(), {
@@ -59,7 +60,7 @@ class Play extends Phaser.Scene {
         this.resetDate(timeText)
         
         this.resetInterval = setInterval(this.resetDate, 1000, timeText)
-        this.textInterval = setInterval(this.setStatText, 1000, ash, statsText)
+        this.textInterval = setInterval(this.setStatText, 1000, this.creature, this.statsText)
 
     }
 
@@ -98,15 +99,15 @@ class Play extends Phaser.Scene {
     //amnt should be a positive integer value.
     replenishStat(stat, amnt) {
         this.creature.addToStat(stat, amnt)
-        this.setStatText()
+        this.setStatText(this.creature, this.statsText)
     }
 
-    setStatText(creature, statsUI) {
+    setStatText(creature, statsText) {
         let stats = creature.getStats()
-        statsUI.health.text = ('Health: ' + stats.health)
-        statsUI.hunger.text = ('Hunger: ' + stats.hunger)
-        statsUI.happy.text = ('Happiness: ' + stats.happiness)
-        statsUI.sleep.text = ('Sleep: ' + stats.sleep)
+        statsText.health.text = ('Health: ' + stats.health)
+        statsText.hunger.text = ('Hunger: ' + stats.hunger)
+        statsText.happy.text = ('Happiness: ' + stats.happiness)
+        statsText.sleep.text = ('Sleep: ' + stats.sleep)
     }
 
     toggleDisplayStats(toggle) {
@@ -119,5 +120,7 @@ class Play extends Phaser.Scene {
     clearIntervals() {
         clearInterval(this.resetInterval)
         clearInterval(this.textInterval)
+        clearInterval(this.creature.incrementInterval)
+        this.creature.destroy()
     }
 }

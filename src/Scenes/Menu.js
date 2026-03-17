@@ -33,6 +33,7 @@ class Menu extends Phaser.Scene {
             frameWidth: 655,
             frameHeight: 480
         })
+        this.load.image('background', 'background/FiRoom.png')
         this.load.image('box_front', 'Box/box_front_sprite.png')
         this.load.image('shell', 'consoleShellRender.png')
         this.load.audio('press', 'Sounds/Press.wav')
@@ -70,7 +71,8 @@ class Menu extends Phaser.Scene {
             })
         })
         
-        
+        this.add.image(game.CENTER_X, game.CENTER_Y, 'background')
+
         this.add.text(game.CENTER_X - 50, (game.config.height / 2)- 200, "Ashagotchi", {
             align: "center"
         })
