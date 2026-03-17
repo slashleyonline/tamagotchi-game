@@ -40,6 +40,8 @@ class Creature extends Phaser.Physics.Arcade.Sprite {
         this.playIcon.visible = false
 
 
+
+
         
         this.parentScene.creatureFSM = new StateMachine('idle', {
             idle: new IdleState(),
@@ -90,7 +92,7 @@ class Creature extends Phaser.Physics.Arcade.Sprite {
     }
 
     actionState(stat) {
-        if (rpsFSM.state != 'decision'){
+        if (this.parentScene.rpsFSM.state != 'decision'){
             //If the FSM is in idle or need state, move to eating state.
             if (this.parentScene.creatureFSM.state == 'idle' || this.parentScene.creatureFSM.state == 'need') {
                 if (stat == 'hunger') {
@@ -316,6 +318,18 @@ class DecisionState extends State {
         console.log('huh')
         //make icons for choices visible
         creature.play('rockpaper')
+
+        scene.rockIcon = scene.add.image(game.CENTER_X - 140, game.CENTER_Y + 125, 'rockIcon')
+        scene.rockIcon.scale = 3
+        scene.rockIcon.visibility = false
+
+        scene.paperIcon = scene.add.image(game.CENTER_X  - 50, game.CENTER_Y + 125, 'paperIcon')
+        scene.paperIcon.scale = 3
+        scene.paperIcon.visibility = false
+
+        scene.scissorsIcon = scene.add.image(game.CENTER_X  + 40, game.CENTER_Y + 125, 'scissorsIcon')
+        scene.scissorsIcon.scale = 3
+        scene.scissorsIcon.visibility = false
     }
 }
 
@@ -323,14 +337,16 @@ class DecisionState extends State {
 class RevealState extends State {
     enter(scene, creature, choice) {
         let choices = ['rock', 'paper', 'scissors']
-        let index = Math.floor(Math.random * 3)
+        let index = Math.floor(Math.random() * 3)
+
+        console.log('index: ', index)
 
         let ashChoice = choices[index]
 
         if (choice == 'hunger') {
             choice= 'rock'
         }
-        else if (choice== 'happiness') {
+        else if (choice == 'happiness') {
             choice= 'paper'
         }
         else {
@@ -338,13 +354,29 @@ class RevealState extends State {
         }
 
         //compare player's choice with random choice
+        console.log(choice, ' - ', ashChoice)
 
-        let result = compareChoices(choice)
+        let result = this.compareChoices(choice, ashChoice)
 
         creature.addToStat('happiness', result)
 
+        if (result == 5) {
+            console.log('tie game!')
+        }
+        else if (result == 0 ) {
+            console.log('you lose!')
+        }
+        else {
+            console.log('you win!')
+        }
+
+        this.destroyIcons(scene)
+
+        scene.rpsFSM.transition('disabled')
+        scene.creatureFSM.transition('idle')
+
     }
-    compareChoices(choice){
+    compareChoices(choice, ashChoice){
         if (choice == ashChoice) {
             return 5
         }
@@ -372,6 +404,11 @@ class RevealState extends State {
                 return 25
             }
         }
+    }
+    destroyIcons(scene) {
+        scene.rockIcon.destroy()
+        scene.paperIcon.destroy()
+        scene.scissorsIcon.destroy()
     }
 }
 
