@@ -8,7 +8,13 @@
 //NOTE: TO SKIP TO END PORTION, PRESS H WHEN ASH HAS NO THOUGHT BUBBLE.
 
 // CREATIVE TILT:
-// This one is less of a "game" and more like a desktop pet. I enjoyed learning about
+//      I decided that I didn't want to make a "game", and focused more on making something akin to a desktop pet. I enjoyed learning how to make a 
+// game that was dependent on real-world time, and I had fun doing research on Tamagotchi, doing my best to recreate their style. I also spent 
+// an extensive amount of time learning how to take 3D models, and turn them into spritesheets. Once I learned the workflow it actually saved me 
+// a decent amount of time in the long run. 
+
+// I'm really proud of the animation I did at the beginning, with the tamagotchi flying out of the box. It took some clever layer manipulation 
+// and use of the timers to accomplish.
 
 let config = {
     type: Phaser.AUTO,
