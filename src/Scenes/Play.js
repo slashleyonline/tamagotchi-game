@@ -64,10 +64,10 @@ class Play extends Phaser.Scene {
 
         setInterval(() => {
             let stats = this.creature.getStats()
-            this.healthText.text = stats.health
-            this.hungerText.text = stats.hunger
-            this.happyText.text = stats.happiness
-            this.sleepText.text = stats.sleep
+            this.healthText.text = ('Health: ' + stats.health)
+            this.hungerText.text = ('Hunger: ' + stats.hunger)
+            this.happyText.text = ('Happiness: ' + stats.happiness)
+            this.sleepText.text = ('Sleep: ' + stats.sleep)
         }, 1000)
 
     }
@@ -111,10 +111,10 @@ class Play extends Phaser.Scene {
 
     setStatText() {
         let stats = this.creature.getStats()
-        this.healthText.text = stats.health
-        this.hungerText.text = stats.hunger
-        this.happyText.text = stats.happiness
-        this.sleepText.text = stats.sleep
+        this.healthText.text = ('Health: ' + stats.health)
+        this.hungerText.text = ('Hunger: ' + stats.hunger)
+        this.happyText.text = ('Happiness: ' + stats.happiness)
+        this.sleepText.text = ('Sleep: ' + stats.sleep)
     }
 
     toggleDisplayStats(toggle) {

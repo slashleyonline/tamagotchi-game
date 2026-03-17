@@ -21,8 +21,9 @@ class Creature extends Phaser.Physics.Arcade.Sprite {
         this.hunger = 20
         //refilled by eating
     }
+
     init() {
-            setInterval(() => {
+        setInterval(() => {
             
             this.addToStat('hunger', -1)
             this.addToStat('sleep', -1)
