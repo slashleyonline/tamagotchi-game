@@ -37,9 +37,12 @@ class Menu extends Phaser.Scene {
             frameWidth: 640,
             frameHeight: 548
         })
-
         this.load.spritesheet('dead', 'Ash/dead.png', {
             frameWidth: 640,
+            frameHeight: 548
+        })
+        this.load.spritesheet('winDance', 'Ash/winDance.png',{
+            frameWidth: 655,
             frameHeight: 548
         })
 
@@ -53,6 +56,7 @@ class Menu extends Phaser.Scene {
         this.load.image('background', 'background/FiRoom.png')
         this.load.image('box_front', 'Box/box_front_sprite.png')
         this.load.image('shell', 'consoleShellRender.png')
+        this.load.image('youWin', 'UI/youWin.png')
 
         this.load.audio('gameOver', 'Sounds/gameOver.wav')
         this.load.audio('hungry', 'Sounds/Hungry.wav')
@@ -79,6 +83,15 @@ class Menu extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('dead', {
                 start: 0,
                 end:0
+            })
+        })
+        this.anims.create({
+            key: 'winDance',
+            frameRate: 2,
+            repeat: -1,
+            frames: this.anims.generateFrameNumbers('winDance', {
+                start: 0,
+                end:3
             })
         })
         this.anims.create({

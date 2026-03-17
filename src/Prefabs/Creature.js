@@ -48,6 +48,7 @@ class Creature extends Phaser.Physics.Arcade.Sprite {
             eating: new EatingState(),
             playing: new PlayingState(),
             gameOver: new GameOverState(),
+            win: new WinState()
         }, [scene, this])
         //FSM for determining what state the creature is in.
     }
@@ -160,6 +161,8 @@ class IdleState extends State {
         creature.playIcon.visible = false
         creature.sleepyIcon.visible = false
 
+        scene.creatureFSM.transition('win')
+
     }
     execute(scene, creature) {
         //if health reaches 0, move to gameOverState
@@ -229,5 +232,13 @@ class GameOverState extends State {
 
         scene.add.image(game.CENTER_X, game.CENTER_Y - 55, 'gameOverText')
         scene.sound.play('gameOver')
+    }
+}
+class WinState extends State {
+    enter(scene, creature) {
+        creature.busy = true
+        let winText = scene.add.image(game.CENTER_X - 70, game.CENTER_Y - 100, 'youWin')
+        winText.scale = 0.5
+        creature.play('winDance')
     }
 }
