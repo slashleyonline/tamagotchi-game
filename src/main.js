@@ -3,6 +3,9 @@
 
 // CITATIONS:
 // StateMachine.js from mkelly.me/blog/phaser-finite-state-machine, Thanks Nathan Altice
+//
+
+//NOTE: TO SKIP TO END PORTION, PRESS H WHEN ASH HAS NO THOUGHT BUBBLE.
 
 let config = {
     type: Phaser.AUTO,

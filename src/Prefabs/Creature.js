@@ -52,6 +52,11 @@ class Creature extends Phaser.Physics.Arcade.Sprite {
         }, [scene, this])
         //FSM for determining what state the creature is in.
 
+        this.parentScene.rpsFSM = new StateMachine('disabled', {
+            disabled: new DisabledState(),
+            decision: new DecisionState(),
+            reveal: new RevealState()
+        })
     }
 
     init() {
@@ -272,10 +277,24 @@ class WinState extends State {
 
 //not playing, default state
 
+class DisabledState extends State {
+    enter(scene, game) {
+
+    }
+}
+
 //Deciding - prompting the player to pick an option
+class DecisionState extends State {
+    enter(scene, game) {
 
-//Reveal - reveal who won, and add points
+    }
+}
 
-//End State
+//Reveal - reveal who won, and add points, reveal prompt to return to disabledState
+class RevealState extends State {
+    enter(scene, game) {
+
+    }
+}
 
 //need fsm for sleep mode
