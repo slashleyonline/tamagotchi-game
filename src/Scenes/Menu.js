@@ -29,6 +29,10 @@ class Menu extends Phaser.Scene {
         this.load.spritesheet('statsButton', 'Buttons/statsButton.png', {
             frameWidth: 38
         })
+        this.load.spritesheet('console', 'Console/sprite_sheet_4.png', {
+            frameWidth: 655,
+            frameHeight: 480
+        })
         this.load.image('box_front', 'Box/box_front_sprite.png')
         this.load.image('shell', 'consoleShellRender.png')
         this.load.audio('press', 'Sounds/Press.wav')
@@ -54,22 +58,34 @@ class Menu extends Phaser.Scene {
                 start: 0,
                 end: 24
             })
-
         })
+        this.anims.create({
+            key:'intro',
+            duration: 1000,
+            repeat:0,
+
+            frames: this.anims.generateFrameNumbers('console', {
+                start: 0,
+                end: 17
+            })
+        })
+        
         
         this.add.text(game.CENTER_X - 50, (game.config.height / 2)- 200, "Ashagotchi", {
             align: "center"
         })
 
-        let playButton = new MenuButton(this, game.CENTER_X - 10, 300, 'playMenuButton')
-        playButton.scale = 1.5
-        let front = this.add.image(game.CENTER_X, 300, 'box_front')
-        front.scale = 1.5
+        let playButton = new MenuButton(this, game.CENTER_X - 12, game.CENTER_Y -23, 'playMenuButton')
+        playButton.scale = 3.5
+        this.console = this.add.sprite(game.CENTER_X - 12, game.CENTER_Y - 23, 'console')
+        this.console.scale = 1.5
+        this.front = this.add.image(game.CENTER_X + 13, game.CENTER_Y- 23, 'box_front')
+        this.front.scale = 3.5
 
-
-        playButton.on('animationcomplete', () => {
-            this.scene.start('playScene')
+        this.console.on('animationcomplete', () => {
+                setTimeout(() => {
+                    this.scene.start('playScene')
+                }, 2000);
         })
-
     }
 }
